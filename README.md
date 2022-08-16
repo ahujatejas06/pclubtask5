@@ -22,9 +22,9 @@ The backend is capable of adding, deleting and updating student records. The rou
 
 - GET request on /  -->  This returns all the data in the database.
 - GET request on /:id --> This returns the data of student having given id.
-- PUT request on / --> Give input in JSON format to add a record in the database.
+- POST request on / --> Give input in JSON format to add a record in the database.
 - DELETE request on /:id --> Deletes the record having given ID.
-- PATCH request on /:id --> Updates the record having given ID.
+- PUT request on /:id --> Updates the record having given ID.
 
 The template for JSON is as follows:-
 
@@ -36,6 +36,10 @@ The template for JSON is as follows:-
   "userid":"tejasahuja21"
 }
 ```
+
+For the PUT request, you only need to give the fields you want to edit in the JSON.
+
+
 This is a very basic server and I have tried to keep the variable names as simple as possible.
 
 ### Errors
