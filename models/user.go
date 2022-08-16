@@ -5,4 +5,5 @@ type User struct {
 	Name       string `json:"name"`
 	Rollnumber int    `json:"roll_number"`
 	Branch     string `json:"branch"`
+	UserID     string `json:"userid"`
 }

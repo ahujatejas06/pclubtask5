@@ -9,16 +9,11 @@ import (
 func main() {
 	router := gin.Default()
 
-	// Connect to database
 	models.ConnectDatabase()
-
-	// Routes
 	router.GET("/", controllers.FindUsers)
 	router.GET("/:id", controllers.FindUser)
 	router.POST("/", controllers.CreateUser)
-	router.PATCH("/:id", controllers.UpdateUser)
+	router.PUT("/:id", controllers.UpdateUser)
 	router.DELETE("/:id", controllers.DeleteUser)
-
-	// Run the server
-	router.Run()
+	router.Run(":8080")
 }

@@ -11,12 +11,14 @@ type CreateAccountInput struct {
 	Name       string `json:"name" binding:"required"`
 	Rollnumber int    `json:"roll_number" binding:"required"`
 	Branch     string `json:"branch" binding:"required"`
+	UserID     string `json:"userid" binding:"required"`
 }
 
 type UpdateAccountInput struct {
 	Name       string `json:"name"`
 	Rollnumber int    `json:"roll_number"`
 	Branch     string `json:"branch"`
+	UserID     string `json:"userid"`
 }
 
 func FindUsers(c *gin.Context) {
@@ -43,7 +45,7 @@ func CreateUser(c *gin.Context) {
 		return
 	}
 
-	user := models.User{Name: input.Name, Rollnumber: input.Rollnumber, Branch: input.Branch}
+	user := models.User{Name: input.Name, Rollnumber: input.Rollnumber, Branch: input.Branch, UserID: input.UserID}
 	models.DB.Create(&user)
 
 	c.JSON(http.StatusOK, gin.H{"data": user})
@@ -61,8 +63,8 @@ func UpdateUser(c *gin.Context) {
 		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
 		return
 	}
-
-	models.DB.Model(&user).Updates(input)
+	update := models.User{Name: input.Name, Rollnumber: input.Rollnumber, Branch: input.Branch, UserID: input.UserID}
+	models.DB.Model(&user).Updates(update)
 
 	c.JSON(http.StatusOK, gin.H{"data": user})
 }
